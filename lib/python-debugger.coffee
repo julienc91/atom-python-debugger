@@ -53,7 +53,7 @@ module.exports =
     editor = atom.workspace.activePaneItem
     console.log('removing all imports')
     matches = []
-    editor.buffer.backwardsScan /ipdb/g, (match) -> matches.push(match)
+    editor.buffer.backwardsScan /^\s*ipdb\.|^import ipdb/gm, (match) -> matches.push(match)
     for match in matches
       console.log(match)
       editor.setCursorScreenPosition([match.range.start.row, 1])
